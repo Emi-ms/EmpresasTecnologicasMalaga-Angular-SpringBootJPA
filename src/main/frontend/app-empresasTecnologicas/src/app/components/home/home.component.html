@@ -1,5 +1,19 @@
+<div id="intro-div">
+  <div id="intro-wrapper">
+  <p class="rubik-font">"Explora nuestras empresas innovadoras y líderes en tecnología que están impulsando el crecimiento y la transformación en la región. Desde startups emergentes hasta empresas consolidadas,
+    nuestra plataforma te conecta con lo último en innovación tecnológica en Málaga."</p>
+  </div>
+</div>
+<div id="select-div">
+  <h3>Filtrar por distrito</h3>
+  <select [(ngModel)]="distritoSeleccionado" (change)="filtrarEmpresasPorDistrito()">
+    <option value="">TODAS</option>
+    <option *ngFor="let distrito of distritos" [value]="distrito.nombre">{{distrito.nombre}}</option>
+  </select>
+</div>
+
 <div id="card-container">
-  <div *ngFor="let empresa of empresas" class="card" style="width: 18rem; height: 450px">
+  <div *ngFor="let empresa of empresasFiltradas" class="card" style="width: 18rem; height: 450px">
     <img ngSrc="{{ empresa.imagen }}" class="card-img-top" alt="logo empresa" width="100" height="150">
     <div class="card-body">
       <h5 class="card-title">{{ empresa.nombre.toUpperCase() }}</h5>

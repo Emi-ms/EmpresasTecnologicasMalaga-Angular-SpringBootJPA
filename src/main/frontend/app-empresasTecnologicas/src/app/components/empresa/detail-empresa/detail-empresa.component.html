@@ -1,1 +1,26 @@
-<p>detail-empresa works!</p>
+<div id="detail-div">
+  <div id="detail-header">
+    <img [src]="empresa?.imagen" alt="imagen">
+  </div>
+  <div id="detail-body">
+
+
+    <div id="contact-div">
+      <h3>Información de contacto</h3>
+      <p><span class="label">Teléfono: </span>{{ empresa?.telefono }}</p>
+      <p><span class="label">Email: </span>{{ empresa?.email }}</p>
+      <p><span class="label">Web: <a [href]="empresa?.web" target="_blank">{{ empresa?.web }}</a></span></p>
+      <p><span class="label">Dirección:</span> {{ empresa?.direccion }}</p>
+    </div>
+    <div id="description-div">
+      <p>{{ empresa?.descripcion }}</p>
+    </div>
+
+  </div>
+
+
+</div>
+<div class="map-wrapper">
+  <h2>Ubicación de {{empresa?.nombre}}</h2>
+  <div id="map"></div>
+</div>

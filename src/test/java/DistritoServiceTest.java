@@ -66,6 +66,6 @@ public class DistritoServiceTest {
         verify(distritoRepository, times(1)).findById(1L);
     }
 
-    // Similar tests for replace() and delete() methods
+
 }
 
