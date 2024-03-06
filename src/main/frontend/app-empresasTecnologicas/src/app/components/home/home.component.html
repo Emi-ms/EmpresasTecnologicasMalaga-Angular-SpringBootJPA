@@ -1,0 +1,10 @@
+<div id="card-container">
+  <div *ngFor="let empresa of empresas" class="card" style="width: 18rem; height: 450px">
+    <img ngSrc="{{ empresa.imagen }}" class="card-img-top" alt="logo empresa" width="100" height="150">
+    <div class="card-body">
+      <h5 class="card-title">{{ empresa.nombre.toUpperCase() }}</h5>
+      <p class="card-text">{{ empresa.descripcion.substring(0, 160) + '...' }}</p>
+      <a href="#" routerLink="/empresa/detail/{{ empresa.idEmpresa }}" class="btn btn-primary">Ver detalles</a>
+    </div>
+  </div>
+</div>

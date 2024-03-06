@@ -22,6 +22,7 @@ public class Empresa {
     private String telefono;
     private String email;
     private String web;
+    @Column(length = 500)
     private String descripcion;
     private String imagen;
     private double latitud;

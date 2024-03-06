@@ -28,6 +28,7 @@ public class EmpresaController {
 
     @PostMapping({"","/"})
     public Empresa newEmpresa(@RequestBody Empresa empresa) {
+        System.out.println(empresa.toString());
         return this.empresaService.save(empresa);
     }
 

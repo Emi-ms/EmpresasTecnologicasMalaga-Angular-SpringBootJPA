@@ -1,0 +1,143 @@
+<div class="formulario">
+
+  <div class="d-flex justify-content-between">
+    <h4>Editar Empresa</h4>
+    <a href="#" routerLink="/empresa" class="btn btn-primary">Volver</a>
+  </div>
+
+  <hr/>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-group row">
+      <div class="col-md-6 ">
+        <label for="nombre">Nombre:</label>
+        <input
+          formControlName="nombre"
+          id="nombre"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['nombre'].touched && f['nombre'].invalid" class="alert alert-danger">
+          <div *ngIf="f['nombre'].errors?.['required']">*Nombre es requerido.</div>
+          <div *ngIf="f['nombre'].errors?.['pattern']">*El nombre sólo puede contener letras.</div>
+          <div *ngIf="f['nombre'].errors?.['maxlength']">*El nombre debe tener menos de 255 caracteres</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="direccion">Dirección:</label>
+        <input
+          formControlName="direccion"
+          id="direccion"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['direccion'].touched && f['direccion'].invalid" class="alert alert-danger">
+          <div *ngIf="f['direccion'].errors?.['required']">*Dirección es requerido.</div>
+          <div *ngIf="f['direccion'].errors?.['pattern']">*La dirección sólo puede contener letras, números y /.,</div>
+          <div *ngIf="f['direccion'].errors?.['maxlength']">*La dirección debe tener menos de 255 caracteres</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="telefono">Teléfono:</label>
+        <input
+          formControlName="telefono"
+          id="telefono"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['telefono'].touched && f['telefono'].invalid" class="alert alert-danger">
+          <div *ngIf="f['telefono'].errors?.['required']">*Teléfono es requerido.</div>
+          <div *ngIf="f['telefono'].errors?.['pattern']">*El teléfono debe contener 9 números</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="email">Email:</label>
+        <input
+          formControlName="email"
+          id="email"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+          <div *ngIf="f['email'].errors?.['required']">*El email es requerido.</div>
+          <div *ngIf="f['email'].errors?.['pattern']">*Formato de email incorrecto</div>
+          <div *ngIf="f['email'].errors?.['maxlength']">*El email debe tener menos de 255 caracteres</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="web">Web:</label>
+        <input
+          formControlName="web"
+          id="web"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['web'].touched && f['web'].invalid" class="alert alert-danger">
+          <div *ngIf="f['web'].errors?.['required']">*La dirección web es requerida.</div>
+          <div *ngIf="f['web'].errors?.['pattern']">*La web tiene que tener formato correcto empezando por http:// o
+            https://
+          </div>
+          <div *ngIf="f['web'].errors?.['maxlength']">*La web debe tener menos de 255 caracteres</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="descripcion">Descripción:</label>
+        <textarea
+          formControlName="descripcion"
+          id="descripcion"
+          type=""
+          class="form-control"></textarea>
+        <div *ngIf="f['descripcion'].touched && f['descripcion'].invalid" class="alert alert-danger">
+          <div *ngIf="f['descripcion'].errors?.['required']">*La descripción es requerida.</div>
+          <div *ngIf="f['descripcion'].errors?.['pattern']">*La descripción no admite caracteres especiales</div>
+          <div *ngIf="f['descripcion'].errors?.['maxlength']">*La descripción debe tener menos de 500 caracteres</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="imagen">Imágen:</label>
+        <input
+          formControlName="imagen"
+          id="imagen"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['imagen'].touched && f['imagen'].invalid" class="alert alert-danger">
+          <div *ngIf="f['imagen'].errors?.['required']">*El nombre de la imágen es requerido.</div>
+          <div *ngIf="f['imagen'].errors?.['maxlength']">*Debe ser menor a 255 caracteres</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="latitud">Latitud:</label>
+        <input
+          formControlName="latitud"
+          id="latitud"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['latitud'].touched && f['latitud'].invalid" class="alert alert-danger">
+          <div *ngIf="f['latitud'].errors?.['required']">*La Latitud es requerida.</div>
+          <div *ngIf="f['latitud'].errors?.['pattern']">*Formato de latitud incorrecto</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="longitud">Longitud:</label>
+        <input
+          formControlName="longitud"
+          id="longitud"
+          type="text"
+          class="form-control">
+        <div *ngIf="f['longitud'].touched && f['longitud'].invalid" class="alert alert-danger">
+          <div *ngIf="f['longitud'].errors?.['required']">*La Longitud es requerida.</div>
+          <div *ngIf="f['longitud'].errors?.['pattern']">*Formato de longitud incorrecto</div>
+        </div>
+      </div>
+      <div class="col-md-6 ">
+        <label for="distrito">Distrito:</label>
+        <select formControlName="distrito" id="distrito" class="form-control">
+          <option *ngFor="let distrito of distritos" [value]="distrito.idDistrito">{{ distrito.nombre }}</option>
+        </select>
+        <div *ngIf="f['distrito'].touched && f['distrito'].invalid" class="alert alert-danger">
+          <div *ngIf="f['distrito'].errors?.['required']">*El distrito es requerido.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="btn btn-primary mt-1" type="submit" [disabled]="!form.valid">Enviar</button>
+  </form>
+</div>
+

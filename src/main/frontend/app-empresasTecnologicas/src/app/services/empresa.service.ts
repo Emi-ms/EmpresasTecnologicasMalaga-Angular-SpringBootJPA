@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable, throwError} from "rxjs";
+import {catchError, Observable, throwError} from "rxjs";
 import {Empresa} from "../models/empresa";
 
 @Injectable({
@@ -21,27 +21,28 @@ export class EmpresaService {
 
   getAll(): Observable<Empresa[]> {
     return this.httpClient.get<Empresa[]>(this.apiURL)
-      .pipe(this.errorHandler);
+      .pipe(catchError(this.errorHandler));
   }
 
   create(empresa: Empresa): Observable<Empresa> {
+    console.log(empresa);
     return this.httpClient.post<Empresa>(this.apiURL, JSON.stringify(empresa), this.httpOptions)
-      .pipe(this.errorHandler);
+      .pipe(catchError(this.errorHandler));
   }
 
   find(id: number): Observable<Empresa> {
     return this.httpClient.get<Empresa>(this.apiURL + id)
-      .pipe(this.errorHandler);
+      .pipe(catchError(this.errorHandler));
   }
 
   update(id: number, empresa: Empresa): Observable<Empresa> {
     return this.httpClient.put<Empresa>(this.apiURL + id, JSON.stringify(empresa), this.httpOptions)
-      .pipe(this.errorHandler);
+      .pipe(catchError(this.errorHandler));
   }
 
   delete(id: number) {
     return this.httpClient.delete<Empresa>(this.apiURL + id, this.httpOptions)
-      .pipe(this.errorHandler);
+      .pipe(catchError(this.errorHandler));
   }
 
   errorHandler(error: any) {
