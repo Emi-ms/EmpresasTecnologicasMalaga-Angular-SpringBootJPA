@@ -1,21 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {Empresa} from "../../../models/empresa";
 import {EmpresaService} from "../../../services/empresa.service";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-list-empresa',
   standalone: true,
   imports: [
     NgForOf,
-    RouterLink
+    RouterLink,
+    ReactiveFormsModule,
+    FormsModule,
+    NgIf
   ],
   templateUrl: './list-empresa.component.html',
   styleUrl: './list-empresa.component.css'
 })
 export class ListEmpresaComponent implements OnInit{
   empresas: Empresa[] = [];
+  empresasFiltradas: Empresa[] = [];
+  filtro: string = '';
 
   constructor(
     public empresaService: EmpresaService
@@ -25,8 +31,10 @@ export class ListEmpresaComponent implements OnInit{
   ngOnInit(): void {
     this.empresaService.getAll().subscribe((data: Empresa[])=>{
       this.empresas = data;
+      this.empresasFiltradas = this.empresas;
       console.log(this.empresas);
     })
+
   }
 
   deleteEmpresa(id: any){
@@ -36,6 +44,16 @@ export class ListEmpresaComponent implements OnInit{
     })
   }
 
+  filtrarEmpresasPorNombre(): void {
+    console.log(this.filtro)
+    if (this.filtro === '') {
+      this.empresasFiltradas = this.empresas;
+    } else {
+      this.empresasFiltradas = this.empresas.filter(empresa => {
+        return empresa.nombre.toLowerCase().includes(this.filtro.toLowerCase());
+      });
+    }
+  }
 
 
 
