@@ -39,7 +39,7 @@ export class ListEmpresaComponent implements OnInit{
 
   deleteEmpresa(id: any){
     this.empresaService.delete(id).subscribe(res => {
-      this.empresas = this.empresas.filter(emp => emp.idEmpresa !== id);
+      this.empresasFiltradas = this.empresas.filter(emp => emp.idEmpresa !== id);
       console.log('Empresa id =' + id + ' eliminada satisfactoriamente!');
     })
   }

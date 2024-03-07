@@ -46,6 +46,7 @@ public class EmpresaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deleteEmpresa(@PathVariable("id") Long id) {
+        System.out.println("Borrando empresa con id: " + id);
         this.empresaService.delete(id);
     }
 }

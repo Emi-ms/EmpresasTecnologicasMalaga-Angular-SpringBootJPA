@@ -10,46 +10,52 @@
       Nueva Empresa</a>
   </div>
   <div id="select-div">
-    <h3>Filtrar por nombre</h3>
-    <input type="text" [(ngModel)]="filtro" (input)="filtrarEmpresasPorNombre()">
-
+    <h3>Filtrar por nombre
+      <input type="text" [(ngModel)]="filtro" (input)="filtrarEmpresasPorNombre()">
+    </h3>
   </div>
-  <div class="mt-5">
-    <div class="row">
-      <div class="col border-bottom" style="width: max-content"><h5>Id</h5></div>
-      <div class="col-sm-1 border-bottom"><h5>Nombre</h5></div>
-      <div class="col-sm-1 border-bottom"><h5>Distrito</h5></div>
-      <div class="col-sm-2 border-bottom"><h5>Web</h5></div>
-      <div class="col-sm-2 border-bottom"><h5>Email</h5></div>
-      <div class="col-sm-1 border-bottom"><h5>Teléfono</h5></div>
-      <div class="col-sm-1 border-bottom"><h5>Dirección</h5></div>
-      <div class="col border-bottom" style="width: max-content;"><h5>Latitud</h5></div>
-      <div class="col border-bottom" style="width: max-content;"><h5>Longitud</h5></div>
-      <div class="col-sm-1 border-bottom d-md-flex justify-content-md-center"><h5>Acción</h5></div>
-    </div>
-    <div *ngIf="empresasFiltradas.length === 0" class="alert alert-danger mt-3" role="alert">
+
+  <table id="table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Nombre</th>
+      <th>Distrito</th>
+      <th>Web</th>
+      <th>Email</th>
+      <th>Teléfono</th>
+      <th>Dirección</th>
+      <th>Latitud</th>
+      <th>Longitud</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <div *ngIf="empresasFiltradas.length === 0" class="alert alert-danger mt-3 message" role="alert">
       No hay empresas con ese criterio de búsqueda.
     </div>
-    <div *ngFor="let empresa of empresasFiltradas" class="row top-5 align-items-center">
-      <div class="col" style="width: max-content">{{ empresa.idEmpresa }}</div>
-      <div class="col-sm-1">{{ empresa.nombre }}</div>
-      <div class="col-sm-1">{{ empresa.distrito.nombre }}</div>
-      <div class="col-sm-2">{{ empresa.web }}</div>
-      <div class="col-sm-2">{{ empresa.email }}</div>
-      <div class="col-sm-1">{{ empresa.telefono }}</div>
-      <div class="col-md-2">{{ empresa.direccion }}</div>
-      <div class="col" style="width: max-content" >{{ empresa.latitud }}</div>
-      <div class="col" style="width: max-content">{{ empresa.longitud }}</div>
-
-
-      <div class="col-sm-1 d-md-flex justify-content-md-center">
-        <button type="button" [routerLink]="['/empresa/', 'edit', empresa.idEmpresa ]" class="btn btn-secondary"
+    <tbody id="tbody">
+    <tr *ngFor="let empresaa of empresasFiltradas ">
+      <td>{{ empresaa.idEmpresa }}</td>
+      <td>{{ empresaa.nombre }}</td>
+      <td>{{ empresaa.distrito.nombre }}</td>
+      <td>{{ empresaa.web }}</td>
+      <td>{{ empresaa.email }}</td>
+      <td>{{ empresaa.telefono }}</td>
+      <td>{{ empresaa.direccion }}</td>
+      <td>{{ empresaa.latitud }}</td>
+      <td>{{ empresaa.longitud }}</td>
+      <td>
+        <button type="button" [routerLink]="['/empresa/', 'edit', empresaa.idEmpresa ]" class="btn btn-secondary"
                 style="margin-left: 2px; margin-top: 2px;">Editar
         </button>
-        <button type="button" (click)="deleteEmpresa(empresa.idEmpresa)" class="btn btn-danger"
+      </td>
+      <td>
+        <button type="button" (click)="deleteEmpresa(empresaa.idEmpresa)" class="btn btn-danger"
                 style="margin-left: 2px; margin-top: 2px;">Eliminar
         </button>
-      </div>
-    </div>
-  </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
