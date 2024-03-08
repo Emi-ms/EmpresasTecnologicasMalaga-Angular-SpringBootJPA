@@ -49,9 +49,10 @@ export class HomeComponent implements OnInit {
       console.log(this.distritos);
     });
 
-    this.map = new Map('my-map').setView([36.71523369179694, -4.434779357899467], 12);
+    this.map = new Map('my-map').setView([36.71523369179694, -4.434779357899467], 10);
     const tiles = new TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
+      maxZoom: 15,
+      minZoom:12
     }).addTo(this.map);
 
   }
